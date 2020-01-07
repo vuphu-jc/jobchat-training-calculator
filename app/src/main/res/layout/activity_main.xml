@@ -5,21 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="bottom"
     tools:context=".MainActivity">
 
     <EditText
+        android:id="@+id/etResult"
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:inputType="none"
+        android:gravity="right|bottom"
+        android:textIsSelectable="true"/>
 
     <EditText
+        android:id="@+id/etExpression"
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="right|bottom"
+        android:textIsSelectable="true"/>
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/glContent" >
-
     </GridLayout>
 
 </LinearLayout>
