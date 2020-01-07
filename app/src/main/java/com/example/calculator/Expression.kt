@@ -2,6 +2,7 @@ package com.example.calculator
 
 import android.util.Log
 import java.lang.Exception
+import java.lang.StringBuilder
 import java.util.*
 
 class Expression {
@@ -53,11 +54,33 @@ class Expression {
     var infix: MutableList<String> = mutableListOf()
 
     constructor(rawExpression: String) {
-        infix = detachExpression(rawExpression)
+        val expression = formatExpression(rawExpression)
+        infix = detachExpression(expression)
+    }
+
+    private fun formatExpression(rawExpression: String) : String {
+        if (rawExpression.isEmpty())
+            return rawExpression
+
+        var builder = StringBuilder(rawExpression)
+
+        var multiplePosition = "\\)\\(|\\d\\(|\\)\\d".toRegex().findAll(rawExpression).toList().reversed()
+        multiplePosition.forEach {
+            var idx = it.range.first + 1
+            builder.insert(idx, "*")
+        }
+
+        var zeroPosition = "(^[-|+])|\\([+|-]".toRegex().findAll(rawExpression).toList().reversed()
+        zeroPosition.forEach {
+            var idx = it.range.first
+            builder.insert(idx, "0")
+        }
+
+        return builder.toString()
     }
 
     private fun detachExpression(rawExpression: String) : MutableList<String> {
-        var pattern = "\\+|\\-|\\*|\\/|\\%|\\(|\\)|\\d+\\.?\\d*|\\.\\d+".toRegex()
+        var pattern = "\\+|-|\\*|/|%|\\(|\\)|\\d+\\.?\\d*|\\.\\d+".toRegex()
         var result : MutableList<String> = mutableListOf()
         for (element in pattern.findAll(rawExpression)) {
             result.add(element.value)

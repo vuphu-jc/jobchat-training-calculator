@@ -52,12 +52,6 @@ class MainActivity : AppCompatActivity() {
                         etExpression.error = ""
                     }
                 })
-            else if (character == ".") {
-                builder.setOnClickListener(View.OnClickListener {
-                    etExpression.text.insert(etExpression.selectionStart, character)
-                    updateResult()
-                })
-            }
             else
                 builder.setOnClickListener(View.OnClickListener {
                     etExpression.text.insert(etExpression.selectionStart, character)
