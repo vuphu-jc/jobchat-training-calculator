@@ -1,4 +1,4 @@
-package com.example.calculator.application.historyexpression
+package com.example.calculator.application.expressionhistory
 
 import com.example.calculator.Global
 import com.example.calculator.domain.historyexpression.ExpressionHistory

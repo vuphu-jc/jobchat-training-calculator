@@ -1,4 +1,4 @@
-package com.example.calculator.application.historyexpression
+package com.example.calculator.application.expressionhistory
 
 import android.content.Context
 import android.view.LayoutInflater

@@ -1,6 +1,7 @@
 package com.example.calculator
 
 import android.content.Context
+import android.util.Log
 import com.example.calculator.domain.historyexpression.ExpressionHistoryDomain
 import com.example.calculator.domain.historyexpression.HistoryExpressionInMemoryRepository
 
