@@ -7,6 +7,8 @@ class HistoryExpressionInMemoryRepository :
 
     companion object {
         const val TABLE_NAME: String = "EXPRESSION"
+        private val SIZE_TITLE: String = "SIZE"
+        private val DATA_TITLE: String = "DATA"
     }
 
     var context: Context? = null
@@ -18,9 +20,9 @@ class HistoryExpressionInMemoryRepository :
         var result : MutableList<ExpressionHistory> = mutableListOf()
         var sharedPref = context?.getSharedPreferences(TABLE_NAME, Context.MODE_PRIVATE)
         if (sharedPref != null) {
-            val size= sharedPref.getInt("SIZE", 0)
+            val size= sharedPref.getInt(SIZE_TITLE, 0)
             for (i in 0 until size) {
-                val json = sharedPref.getString("DATA-$i", "{}")
+                val json = sharedPref.getString("$SIZE_TITLE-$i", "{}")
                 result.add(ExpressionHistory.fromJson(json as String))
             }
         }
@@ -30,10 +32,10 @@ class HistoryExpressionInMemoryRepository :
     override fun add(data: ExpressionHistory) {
         var sharedPref = context?.getSharedPreferences(TABLE_NAME, Context.MODE_PRIVATE)
         if (sharedPref != null) {
-            val size= sharedPref.getInt("SIZE", 0)
+            val size= sharedPref.getInt(SIZE_TITLE, 0)
             var editor = sharedPref.edit()
-            editor.putString("DATA-$size", data.toJson())
-            editor.putInt("SIZE", 1 + size)
+            editor.putString("$DATA_TITLE-$size", data.toJson())
+            editor.putInt(SIZE_TITLE, 1 + size)
             editor.apply()
         }
     }
@@ -43,7 +45,7 @@ class HistoryExpressionInMemoryRepository :
         if (sharedPref != null) {
             var editor = sharedPref.edit()
             editor.clear()
-            editor.putInt("SIZE", 0)
+            editor.putInt(SIZE_TITLE, 0)
             editor.apply()
         }
     }

@@ -25,10 +25,13 @@ class MainViewModel {
     }
 
     fun saveData() {
+        if (observerExpression.getValue().isNullOrEmpty())
+            return
+
         if (observerResult.getValue().isNullOrEmpty()) {
             observerSaveData.setValue(false)
         } else {
-            var data = ExpressionHistory(Calendar.getInstance().time.toString(), observerExpression.getValue()!!, observerResult.getValue()!!)
+            var data = ExpressionHistory(Calendar.getInstance().time.toString(), observerExpression.getValue() as String, observerResult.getValue() as String)
             ucAddData.run(ExpressionHistoryDomain.UseCase.AddData.Params(data),
                 object: ExpressionHistoryDomain.UseCase.AddData.Response {
                     override fun onAdded() {

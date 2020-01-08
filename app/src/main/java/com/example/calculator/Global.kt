@@ -13,4 +13,5 @@ object Global {
     fun getHistoryExpressionRepository(): ExpressionHistoryDomain.Repository {
         return expressionHistoryRepository
     }
+
 }
