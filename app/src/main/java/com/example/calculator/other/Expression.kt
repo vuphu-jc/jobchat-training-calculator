@@ -1,6 +1,5 @@
-package com.example.calculator
+package com.example.calculator.other
 
-import android.util.Log
 import java.lang.Exception
 import java.lang.StringBuilder
 import java.util.*
@@ -26,8 +25,16 @@ class Expression {
             var stack : Stack<String> = Stack()
 
             infix.forEach {
-                if (isOperator(it)) {
-                    while (stack.size > 0 && getPriority(it) <= getPriority(stack.peek()))
+                if (isOperator(
+                        it
+                    )
+                ) {
+                    while (stack.size > 0 && getPriority(
+                            it
+                        ) <= getPriority(
+                            stack.peek()
+                        )
+                    )
                         postfix.add(stack.pop())
                     stack.push(it)
                 }
@@ -88,13 +95,17 @@ class Expression {
         return result
     }
 
-    fun getResult() : Float? {
+    fun getResult() : String? {
         try {
-            var postfix = InfixToPostfix.run(infix)
+            var postfix =
+                run(infix)
 
             var stack: Stack<Float> = Stack()
             postfix.forEach {
-                if (isOperator(it)) {
+                if (isOperator(
+                        it
+                    )
+                ) {
                     if (it == "%") {
                         var value = stack.pop()
                         value *= 0.01f
@@ -118,8 +129,9 @@ class Expression {
             var res = stack.pop()
             if (stack.size > 0)
                 return null
-
-            return res
+            if (res.compareTo(res.toInt()) == 0)
+                return res.toInt().toString()
+            return res.toString()
         } catch (e: Exception) {
             return null
         }

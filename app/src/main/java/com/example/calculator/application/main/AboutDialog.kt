@@ -1,12 +1,10 @@
-package com.example.calculator
+package com.example.calculator.application.main
 
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
-import android.view.View
-import android.view.Window
 import android.widget.ImageView
-import kotlinx.android.synthetic.main.view_about.*
+import com.example.calculator.R
 
 class AboutDialog(context: Context) : AlertDialog(context) {
 

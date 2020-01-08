@@ -1,4 +1,4 @@
-package com.example.calculator
+package com.example.calculator.application.main
 
 import android.content.Context
 import android.util.TypedValue
@@ -6,6 +6,7 @@ import android.view.Gravity
 import android.view.View
 import android.widget.GridLayout
 import android.widget.TextView
+import com.example.calculator.R
 
 class ButtonBuilder {
     private var mView: TextView? = null
@@ -28,7 +29,7 @@ class ButtonBuilder {
     }
 
     companion object {
-        fun create(context : Context) : ButtonBuilder  {
+        fun create(context : Context) : ButtonBuilder {
             return ButtonBuilder(context)
         }
     }
